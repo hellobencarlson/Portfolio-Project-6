@@ -10,11 +10,11 @@ var showClass = document.getElementsByClassName('show');
 
 // 3 create phrases array
 phrases = [
-    "What does the fox say",
-    "Happy birthday",
-    "Good morning",
-    "Sleep well",
-    "How are you"
+    "what does the fox say",
+    "happy birthday",
+    "good morning",
+    "sleep well",
+    "how are you"
 ];
 
    // 2 hide overlay on click of button
@@ -71,9 +71,8 @@ function checkLetters(event) {
             var eachLI = checkLetter[i].textContent;
             console.log(eachLI);
                 if (buttonText == eachLI) {
-                    checkLetter[i].className = "show"
+                    checkLetter[i].className = "show";
                     var match = buttonText; 
-                    // what if repeat or uppercase (pp in Happy)(Gg in Good morning)
          }
      } 
  }
@@ -85,6 +84,7 @@ function misses() {
     if (letterFound == null) {
    document.getElementById('scoreboard').getFirstElementChild.removeChild();  
     missed = missed += 1; 
+    console.log(missed);
     }
 }
 /* start comment
