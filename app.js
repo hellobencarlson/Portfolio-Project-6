@@ -3,7 +3,7 @@
 var qwerty = document.getElementById('qwerty');
 var phrase = document.getElementById('phrase');
 var missed = 0;
-var checkLetter = document.getElementsByTagName('li');
+var checkLetter = document.getElementsByClassName('box');
 var letterClass = document.getElementsByClassName('letter');
 var showClass = document.getElementsByClassName('show');
 
@@ -28,53 +28,103 @@ function myFunction() {
 
 function getRandomPhraseAsArray(arr){
     //do stuff to any arr that is passed in 
-    var randomNumber = Math.floor( Math.random() * 4 );
+    var randomNumber = Math.floor( Math.random() * 5 );
+    console.log(randomNumber);
     var phraseReturn = phrases[randomNumber];
-    var phraseArrayReturn = phraseReturn.split(" ");
+    var phraseArrayReturn = phraseReturn.split("");
     console.log(phraseArrayReturn);
+    return phraseArrayReturn;
 }
-getRandomPhraseAsArray(phrases);
 
 
 // 5 set game display
+const phraseArray = getRandomPhraseAsArray(phrases);
+
 function addPhraseToDisplay(arr) {
-    for (var i = 0; i < arr.length; i += 0) {
-        arr.forEach(char);
-        console.log(char);
+    for (var i = 0; i < phraseArray.length; i += 1) {
+        if (phraseArray[i] == " ") {
+            var newSpace = phraseArray[i];
+            var createSpan = document.createElement("SPAN");
+            var createSpace = document.createTextNode(newSpace);
+            createSpan.appendChild(createSpace);
+            document.getElementById('phrase').firstElementChild.appendChild(createSpan);
+        } else {
+            var character = phraseArray[i];
+            var createLI = document.createElement("LI");
+            var createText = document.createTextNode(character);
+            createLI.appendChild(createText);
+            document.getElementById('phrase').firstElementChild.appendChild(createLI).className = "box";
     }
 }
+}
 
-const phraseArray = getRandomPhraseAsArray(phrases);
-addPhraseToDisplay(phraseArray);
+addPhraseToDisplay(phraseArray); 
 
-// 6 checkletter function
-// button[i]- add it within the function
-// define button 
+// 6/7 add event listener, checkletter function
+document.getElementById('qwerty').addEventListener('click', checkLetters, misses);
 
-// function checkletter (button) {
-//    for (var i; i < checkLetter.length; i+= 1) {
-//        var eachLI = checkLetter[i];
-//        console.log(eachLI);
-//    } 
-// } 
-
-// 7 add an event listener
-// document.getElementsById('qwerty').addEventListener('click',);
+function checkLetters(event) {
+    if (event.target.tagName == "BUTTON") {
+        buttonText = event.target.textContent;
+        console.log(buttonText);
+        for (var i = 0; i < checkLetter.length; i += 1) {
+            var eachLI = checkLetter[i].textContent;
+            console.log(eachLI);
+                if (buttonText == eachLI) {
+                    checkLetter[i].className = "show"
+                    var match = buttonText; 
+                    // what if repeat or uppercase (pp in Happy)(Gg in Good morning)
+         }
+     } 
+ }
+    // return match;
+} 
 
 // 8 count misses
+function misses() {
+    if (letterFound == null) {
+   document.getElementById('scoreboard').getFirstElementChild.removeChild();  
+    missed = missed += 1; 
+    }
+}
+/* start comment
+// 9 checkwin & 11 reset game button
+function resetButtonAppear() {
+    winButtonDiv = document.getElementById('btn__reset');
+    winButtonDiv.removeChild(winButtonDiv.childNodes[1]);
+    createButton = document.createElement("BUTTON");
+    addText = document.createTextNode("Reset");
+    createButton.appendChild(addText);
+    winButtonDiv.appendChild(createButton);
+    winButtonDiv.lastChild.setAttribute('id', 'resetNow');
+   
+    document.getElementById('resetNow').addEventListener('click', myFunction);
+        function myFunction() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+        missed = 0;
+        var scoreboard =  document.getElementById('scoreboard').getFirstElementChild
+            if (scoreboard.length < 3) {
+                heartClone = scoreboard.getFirstElementChild.cloneNode(true);
+                scoreboard.getFirstElementChild.appendChild(heartClone);
+                // run new phrase and phrase display function here
+                // get buttons to re-display
+            }
+}
 
-// 9 create checkwin function OK
-// function checkwin() {
-// if (letterClass.length == showClass.length) {
-//    document.getElementById('overlay').style.display = 'flex';
-//    document.getElementById('overlay').addClassName('win');
-//    document.getElementByClassName('header').innerHTML = "You Won!!!";
-// }
-// if (miss > 4) {
-//      document.getElementById('overlay').addClassName('lose');
-//      document.getElementByClassName('header').innerHTML = "Sorry, You Lost";
-//      document.getElementById('overlay').style.display = 'flex';
-// }
-
-// 10 CSS transitions
-// 11 reset game button
+function checkwin() {
+    if (letterClass.length == showClass.length) {
+        document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('overlay').addClassName('win');
+        document.getElementByClassName('header').innerHTML = "You Won!!!";        
+        resetButtonAppear();
+    }
+    if (miss > 4) {
+      document.getElementById('overlay').addClassName('lose');
+      document.getElementByClassName('header').innerHTML = "Sorry, You Lost";
+      document.getElementById('overlay').style.display = 'flex';
+      resetButtonAppear();
+     }
+    }
+// 10 CSS transitions 
+end */

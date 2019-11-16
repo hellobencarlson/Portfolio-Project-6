@@ -29,9 +29,22 @@ body {
   height: 100vh;
 }
 
-li, ol, ul {
+.box {
+  padding: 15px;
+  margin: 2px;
+  display: inline-block;
+  border: 2px black solid;
+  color: white;
+  width: 10px;
+}
+
+ol, ul, li {
   padding: 0;
   display: inline-block;
+}
+
+span {
+  padding: 15px;
 }
 
 h2 {
@@ -95,6 +108,8 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  padding: 15px;
+  margin: 2px;
 }
 
 /* Keyboard */
