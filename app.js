@@ -2,10 +2,11 @@
 
 var qwerty = document.getElementById('qwerty');
 var phrase = document.getElementById('phrase');
-var missed = 0;
-var checkLetter = document.getElementsByClassName('box');
+var heartGone = 0;
+var checkLetter = document.getElementsByClassName('letter');
 var letterClass = document.getElementsByClassName('letter');
 var showClass = document.getElementsByClassName('show');
+var match = 0;
 
 
 // 3 create phrases array
@@ -53,42 +54,71 @@ function addPhraseToDisplay(arr) {
             var createLI = document.createElement("LI");
             var createText = document.createTextNode(character);
             createLI.appendChild(createText);
-            document.getElementById('phrase').firstElementChild.appendChild(createLI).className = "box";
-    }
+            document.getElementById('phrase').firstElementChild.appendChild(createLI).classList.add("letter");
+        }
 }
 }
 
 addPhraseToDisplay(phraseArray); 
 
-// 6/7 add event listener, checkletter function
-document.getElementById('qwerty').addEventListener('click', checkLetters, misses);
+// 6/7/8 add event listener, checkletter function, count misses
+document.getElementById('qwerty').addEventListener('click', checkLetters);
 
 function checkLetters(event) {
-    if (event.target.tagName == "BUTTON") {
+    if (event.target.tagName == "BUTTON" && event.target.textContent !== "") {
         buttonText = event.target.textContent;
         console.log(buttonText);
         for (var i = 0; i < checkLetter.length; i += 1) {
             var eachLI = checkLetter[i].textContent;
             console.log(eachLI);
                 if (buttonText == eachLI) {
-                    checkLetter[i].className = "show";
-                    var match = buttonText; 
-         }
-     } 
+                    checkLetter[i].classList.add("show");
+                    match +=1;
+                    event.target.textContent = "";
+                } else {
+                    event.target.textContent = "";   
+                } 
+            } 
+        if (match > 0) {
+                setTimeout(checkWin, 4000);
+            }
+        if (match == 0) {
+                heartGone += 1;
+                if (heartGone < 6) {
+                    var ol = document.getElementById('ol');
+                    var li = ol.lastElementChild;
+                    ol.removeChild(li);
+                    console.log("Hearts removed are " + heartGone);
+                }
+                // setTimeout(checkLose, 4000);
+            }
+            match = 0;
+    }  
  }
-    // return match;
+
+// 9 checkwin 
+function checkWin() {
+    if (letterClass.length == showClass.length) {
+        document.getElementById('overlay').style.display = 'flex';
+        document.getElementById('overlay').classList.add("win");
+        document.getElementById('title').innerHTML = "You Won!!!";
+          // resetButtonAppear();
+    }
 } 
 
-// 8 count misses
-function misses() {
-    if (letterFound == null) {
-   document.getElementById('scoreboard').getFirstElementChild.removeChild();  
-    missed = missed += 1; 
-    console.log(missed);
+   /* start comment 
+function checkLose() {
+    if (heartGone = 5) {
+        document.getElementById('overlay').classList.add('lose');
+       document.getElementByClassName('header').innerHTML = "Sorry, You Lost";
+       document.getElementById('overlay').style.display = 'flex';
+        // resetButtonAppear();
+     }
     }
-}
-/* start comment
-// 9 checkwin & 11 reset game button
+
+
+   
+// 11 reset game button
 function resetButtonAppear() {
     winButtonDiv = document.getElementById('btn__reset');
     winButtonDiv.removeChild(winButtonDiv.childNodes[1]);
@@ -111,20 +141,5 @@ function resetButtonAppear() {
                 // get buttons to re-display
             }
 }
-
-function checkwin() {
-    if (letterClass.length == showClass.length) {
-        document.getElementById('overlay').style.display = 'flex';
-        document.getElementById('overlay').addClassName('win');
-        document.getElementByClassName('header').innerHTML = "You Won!!!";        
-        resetButtonAppear();
-    }
-    if (miss > 4) {
-      document.getElementById('overlay').addClassName('lose');
-      document.getElementByClassName('header').innerHTML = "Sorry, You Lost";
-      document.getElementById('overlay').style.display = 'flex';
-      resetButtonAppear();
-     }
-    }
-// 10 CSS transitions 
 end */
+
