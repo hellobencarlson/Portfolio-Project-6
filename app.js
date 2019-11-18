@@ -65,7 +65,7 @@ addPhraseToDisplay(phraseArray);
 document.getElementById('qwerty').addEventListener('click', checkLetters);
 
 function checkLetters(event) {
-    if (event.target.tagName == "BUTTON" && event.target.textContent !== "") {
+    if (event.target.tagName == "BUTTON") {
         buttonText = event.target.textContent;
         console.log(buttonText);
         for (var i = 0; i < checkLetter.length; i += 1) {
@@ -74,13 +74,13 @@ function checkLetters(event) {
                 if (buttonText == eachLI) {
                     checkLetter[i].classList.add("show");
                     match +=1;
-                    event.target.textContent = "";
+                    event.target.style.visibility = "hidden";
                 } else {
-                    event.target.textContent = "";   
+                    event.target.style.visibility = "hidden";
                 } 
             } 
         if (match > 0) {
-                setTimeout(checkWin, 4000);
+                setTimeout(checkWin, 3000);
             }
         if (match == 0) {
                 heartGone += 1;
@@ -90,7 +90,7 @@ function checkLetters(event) {
                     ol.removeChild(li);
                     console.log("Hearts removed are " + heartGone);
                 }
-                // setTimeout(checkLose, 4000);
+                setTimeout(checkLose, 1000);
             }
             match = 0;
     }  
@@ -102,44 +102,40 @@ function checkWin() {
         document.getElementById('overlay').style.display = 'flex';
         document.getElementById('overlay').classList.add("win");
         document.getElementById('title').innerHTML = "You Won!!!";
-          // resetButtonAppear();
+        resetGame();
     }
 } 
 
-   /* start comment 
+
 function checkLose() {
-    if (heartGone = 5) {
+    if (heartGone == 5) {
+        document.getElementById('overlay').style.display = 'flex';
         document.getElementById('overlay').classList.add('lose');
-       document.getElementByClassName('header').innerHTML = "Sorry, You Lost";
-       document.getElementById('overlay').style.display = 'flex';
-        // resetButtonAppear();
+        document.getElementById('title').innerHTML = "Sorry, You Lost";
+        resetGame();
      }
     }
 
-
-   
-// 11 reset game button
-function resetButtonAppear() {
-    winButtonDiv = document.getElementById('btn__reset');
-    winButtonDiv.removeChild(winButtonDiv.childNodes[1]);
-    createButton = document.createElement("BUTTON");
-    addText = document.createTextNode("Reset");
-    createButton.appendChild(addText);
-    winButtonDiv.appendChild(createButton);
-    winButtonDiv.lastChild.setAttribute('id', 'resetNow');
-   
-    document.getElementById('resetNow').addEventListener('click', myFunction);
-        function myFunction() {
-            document.getElementById('overlay').style.display = 'none';
+    // 11 reset game button
+function resetGame() {
+    document.getElementById('btn-reset').innerHTML = "Reset";
+    document.getElementById('btn-reset').classList.add('resetNow');
+    heartsGone = 0;
+    var getPhraseUL = document.getElementById('phraseUL')
+    // var getPhraseULChild = getPhraseUL.firstElementChild;
+    while (getPhraseUL.firstChild) {
+      getPhraseUL.removeChild(getPhraseUL.firstChild);   
+    }
+    addPhraseToDisplay(phraseArray); 
+    function buttonsBack() {
+        var buttonLocation = document.getElementsByTagName("button");
+        for (var i = 0; i < buttonLocation.length; i += 1) {
+            buttonLocation[i].style.visibility = "visible";
         }
-        missed = 0;
-        var scoreboard =  document.getElementById('scoreboard').getFirstElementChild
-            if (scoreboard.length < 3) {
-                heartClone = scoreboard.getFirstElementChild.cloneNode(true);
-                scoreboard.getFirstElementChild.appendChild(heartClone);
-                // run new phrase and phrase display function here
-                // get buttons to re-display
-            }
-}
-end */
+    }
+    buttonsBack();
+    // remove old phrase
+    // bring all keys back
+    // bring hearts back 
+} 
 
