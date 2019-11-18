@@ -137,8 +137,8 @@ function resetGame() {
     var olChildCount = document.getElementById('ol').childElementCount;
     console.log(olChildCount);
     var liHeart = document.createElement("LI");
-    var heartText = document.createTextNode("InsertHeart");
-    liHeart.appendChild(heartText);
+    liHeart.classList.add('tries');
+    liHeart.innerHTML = '<img src="<images/liveHeart.png" height="35px" width="30px">' 
     for (var i = olChildCount; i < 6; i += 1) {
         document.getElementById('ol').appendChild(liHeart);
         console.log(i);
