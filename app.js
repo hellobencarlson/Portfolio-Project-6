@@ -134,8 +134,15 @@ function resetGame() {
         }
     }
     buttonsBack();
-    // remove old phrase
-    // bring all keys back
-    // bring hearts back 
+    var olChildCount = document.getElementById('ol').childElementCount;
+    console.log(olChildCount);
+    var liHeart = document.createElement("LI");
+    var heartText = document.createTextNode("InsertHeart");
+    liHeart.appendChild(heartText);
+    for (var i = olChildCount; i < 6; i += 1) {
+        document.getElementById('ol').appendChild(liHeart);
+        console.log(i);
+    }
+    // to do - bring hearts back 
 } 
 
