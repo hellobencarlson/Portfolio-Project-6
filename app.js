@@ -121,8 +121,7 @@ function resetGame() {
     document.getElementById('btn-reset').innerHTML = "Reset";
     document.getElementById('btn-reset').classList.add('resetNow');
     heartsGone = 0;
-    var getPhraseUL = document.getElementById('phraseUL')
-    // var getPhraseULChild = getPhraseUL.firstElementChild;
+    var getPhraseUL = document.getElementById('phraseUL');
     while (getPhraseUL.firstChild) {
       getPhraseUL.removeChild(getPhraseUL.firstChild);   
     }
@@ -136,13 +135,13 @@ function resetGame() {
     buttonsBack();
     var olChildCount = document.getElementById('ol').childElementCount;
     console.log(olChildCount);
-    var liHeart = document.createElement("LI");
-    liHeart.classList.add('tries');
-    liHeart.innerHTML = '<img src="<images/liveHeart.png" height="35px" width="30px">' 
-    for (var i = olChildCount; i < 6; i += 1) {
+    for (var i = olChildCount; i < 5; i += 1) {
+        var liHeart = document.createElement("LI");
+        liHeart.classList.add('tries');
+        liHeart.innerHTML = '<img src="images/liveHeart.png" height="35px" width="30px">' 
         document.getElementById('ol').appendChild(liHeart);
         console.log(i);
     }
-    // to do - bring hearts back 
-} 
+    heartGone = 0;
+}
 
