@@ -66,6 +66,11 @@ document.getElementById('qwerty').addEventListener('click', checkLetters);
 
 function checkLetters(event) {
     if (event.target.tagName == "BUTTON") {
+        document.getElementById('overlay').classList.remove("start");
+        if (document.getElementById('overlay').className = "win")
+            document.getElementById('overlay').classList.remove("win");
+            if (document.getElementById('overlay').className = "lose")
+            document.getElementById('overlay').classList.remove("lose");
         buttonText = event.target.textContent;
         console.log(buttonText);
         for (var i = 0; i < checkLetter.length; i += 1) {
