@@ -39,7 +39,7 @@ function getRandomPhraseAsArray(arr){
 
 
 // 5 set game display
-const phraseArray = getRandomPhraseAsArray(phrases);
+var phraseArray = getRandomPhraseAsArray(phrases);
 
 function addPhraseToDisplay(arr) {
     for (var i = 0; i < phraseArray.length; i += 1) {
@@ -123,6 +123,9 @@ function checkLose() {
 
     // 11 reset game button
 function resetGame() {
+    
+    phraseArray = getRandomPhraseAsArray(phrases);
+    
     document.getElementById('btn-reset').innerHTML = "Reset";
     document.getElementById('btn-reset').classList.add('resetNow');
     heartsGone = 0;
@@ -130,7 +133,10 @@ function resetGame() {
     while (getPhraseUL.firstChild) {
       getPhraseUL.removeChild(getPhraseUL.firstChild);   
     }
+
     addPhraseToDisplay(phraseArray); 
+
+
     function buttonsBack() {
         var buttonLocation = document.getElementsByTagName("button");
         for (var i = 0; i < buttonLocation.length; i += 1) {
